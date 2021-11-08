@@ -1,0 +1,26 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-bottom: 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-item-custom, .navbar-item-custom a {
+    color: #ffffff;
+}
+
+.footer {
+    text-align: center;
+    position: absolute;
+    padding: 25px 0;
+    bottom: 0;
+    width: 100%;
+    height: 130px;
+    background-color: #E2E2E2;
+}
