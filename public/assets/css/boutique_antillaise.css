@@ -1,3 +1,4 @@
+/** base.html.twig **/
 html {
     position: relative;
     min-height: 100%;
@@ -15,6 +16,10 @@ body {
     color: #ffffff;
 }
 
+main.main {
+    margin-bottom: 180px;
+}
+
 .footer {
     text-align: center;
     position: absolute;
@@ -24,3 +29,40 @@ body {
     height: 130px;
     background-color: #E2E2E2;
 }
+/** base.html.twig **/
+
+/** product/index.html.twig **/
+.product-item h5 {
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+
+.product-item {
+    margin-top: 50px;
+}
+
+.product-item .product-subtitle {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.product-item .product-price {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.product-item .product-img {
+    display: inline-block;
+    min-height: 350px;
+}
+
+.product-item .product-img > img {
+    width: 100%;
+}
+/** product/index.html.twig **/
+.product-page-price {
+    font-size: 20px;
+}
+/** product/shox.html.twig **/
