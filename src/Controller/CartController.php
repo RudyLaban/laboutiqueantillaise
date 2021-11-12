@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
-use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,18 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-
-    private $em;
-
-    /**
-     * @param EntityManagerInterface $em
-     */
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
-
-
     /**
      * Vers le panier
      *
@@ -30,17 +17,8 @@ class CartController extends AbstractController
      */
     public function index(Cart $cart): Response
     {
-        $procuctsInCart = [];
-
-        foreach ($cart->get() as $id => $quantity) {
-            $procuctsInCart[] = [
-                'product'   => $this->em->getRepository(Product::class)->findOneById($id),
-                'quantity'  => $quantity,
-            ];
-        }
-
         return $this->render('cart/index.html.twig', [
-            'cart' => $procuctsInCart,
+            'cart' => $cart->getFullCart(),
         ]);
     }
 
@@ -57,6 +35,18 @@ class CartController extends AbstractController
     }
 
     /**
+     * Enlève un élement d'un produit
+     *
+     * @Route("/cart/subtract/{id}", name="subtract_product")
+     */
+    public function subtract(Cart $cart, $id): Response
+    {
+        $cart->subtract($id);
+
+        return $this->redirectToRoute('cart');
+    }
+
+    /**
      * Vide le panier
      *
      * @Route("/cart/remove", name="remove_my_cart")
@@ -66,5 +56,17 @@ class CartController extends AbstractController
         $cart->remove();
 
         return $this->redirectToRoute('products');
+    }
+
+    /**
+     * Supprime un produit du pannier
+     *
+     * @Route("/cart/delete/{id}", name="delete_from_cart")
+     */
+    public function delete(Cart $cart, $id): Response
+    {
+        $cart->delete($id);
+
+        return $this->redirectToRoute('cart');
     }
 }
