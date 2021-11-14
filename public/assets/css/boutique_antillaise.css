@@ -83,3 +83,48 @@ main.main {
     max-width: 1100px;
 }
 /** security/login.html.twig **/
+
+/** order/login.html.twig **/
+.row > .col-md-6 {
+    padding-right: 18px;
+    padding-left: 18px;
+}
+
+#order_carriers, #order_addresses, .order-summary {
+    background-color: #C0D6DF;
+    padding: 5px;
+    border: #8FADBA solid 2px;
+    border-radius: .4rem;
+}
+
+#order_carriers > .form-check, #order_addresses > .form-check, #order-summary > .form-check {
+    background-color: #DBE9EE;
+    padding: 20px 50px;
+    margin: 15px;
+    border-radius: .6rem;
+    border: #8FADBA solid 2px;
+}
+
+.col-form-label {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.order-summary {
+    background-color: #C0D6DF;
+}
+
+.order-summary > .row {
+    background-color: #DBE9EE;
+    margin: 15px;
+    border-radius: .4rem;
+    border: #8FADBA solid 2px;
+}
+
+.order-summary > .row > .col-2 {
+    margin: 10px auto;
+}
+
+/** order/login.html.twig **/
+
+
