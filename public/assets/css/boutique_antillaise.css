@@ -66,3 +66,20 @@ main.main {
     font-size: 20px;
 }
 /** product/shox.html.twig **/
+
+/** security/login.html.twig **/
+.block-custom {
+    margin: 0 auto;
+    padding: 40px 40px 30px;
+    background-color: #eee;
+    border-radius: .8rem ;
+}
+
+.block-small {
+    max-width: 600px;
+}
+
+.block-large {
+    max-width: 1100px;
+}
+/** security/login.html.twig **/

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Entity\Address;
 use App\Form\AddressType;
 use App\Repository\AddressRepository;
@@ -34,7 +35,7 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/account/ajout-adresse", name="account_address_add")
      */
-    public function add(Request $request): Response
+    public function add(Request $request, Cart $cart): Response
     {
         $address = new Address();
 
@@ -47,6 +48,10 @@ class AccountAddressController extends AbstractController
 
             $this->em->persist($address);
             $this->em->flush();
+            // Si le panier contient des produits, redirection vers la validation de commande
+            if ($cart->get()) {
+                return $this->redirectToRoute('order');
+            }
 
             return $this->redirectToRoute('account_address');
         }

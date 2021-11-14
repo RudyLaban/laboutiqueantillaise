@@ -60,7 +60,7 @@
             <div class="container">
                 <b>Nombre de produit</b> {{ cart|length }}<br>
                 <b>Total du panier</b> {{ (total / 100)|number_format(2, ',', '.') }} €<br>
-                <a href="" class="btn btn-success mt-3">Commander</a>
+                <a href="{{ path('order') }}" class="btn btn-success mt-3">Commander</a>
             </div>
         </div>
 

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - La boutique antillaise{% endblock %}
+
+{% block content %}
+    <h2>Validation de commande</h2>
+    <p>Choisissez vos préférences avant de valider votre commande.</p>
+    <hr>
+        <div class="row">
+            <div class="col-md-6">
+                {% set formHtml %}
+                    {{ form(form) }}
+                {% endset %}
+                {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+                <b>Choisir mon transporteur</b>
+            </div>
+            <div class="col-md-6">
+                <b>Récapitulatif de ma commande</b><br>
+                <b>Bouton de validation</b>
+            </div>
+    </div>
+{% endblock %}
