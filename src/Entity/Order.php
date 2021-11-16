@@ -51,6 +51,11 @@ class Order
      */
     private $orderDetails;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $paid;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -147,6 +152,18 @@ class Order
                 $orderDetail->setUserOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isPaid(): ?bool
+    {
+        return $this->paid;
+    }
+
+    public function setPaid(bool $paid): self
+    {
+        $this->paid = $paid;
 
         return $this;
     }
