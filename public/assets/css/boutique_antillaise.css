@@ -136,7 +136,10 @@ main.main {
 .order-recap {
     padding-bottom: 30px;
 }
-
 /** order/login.html.twig **/
 
-
+/** FOR THE NIGHT **/
+html, body {
+    background-color: #222436;
+}
+/** FOR THE NIGHT **/

@@ -47,7 +47,7 @@ class StripeController extends AbstractController
         $productForStripe[] = [
             'price_data' => [
                 'currency' => 'eur',
-                'unit_amount' => $order->getCarrierPrice() * 100,
+                'unit_amount' => $order->getCarrierPrice(),
                 'product_data' => [
                     'name' => $order->getCarrierName(),
                     'images' => [$_SERVER['SYMFONY_APPLICATION_DEFAULT_ROUTE_URL']],
@@ -66,10 +66,13 @@ class StripeController extends AbstractController
             ],
             'customer_email' => $this->getUser()->getEmail(),
             'mode' => 'payment',
-            'success_url' => $_SERVER['SYMFONY_APPLICATION_DEFAULT_ROUTE_URL'] . 'success.html',
-            'cancel_url' => $_SERVER['SYMFONY_APPLICATION_DEFAULT_ROUTE_URL'] . 'cancel.html',
+            'success_url' => $_SERVER['SYMFONY_APPLICATION_DEFAULT_ROUTE_URL'] . 'commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $_SERVER['SYMFONY_APPLICATION_DEFAULT_ROUTE_URL'] . 'commande/erreur/{CHECKOUT_SESSION_ID}',
 
         ]);
+
+        $order->setStripeSessionId($checkoutSession->id);
+        $em->flush();
 
         return $this->redirect($checkoutSession->url);
     }

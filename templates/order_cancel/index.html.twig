@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de paiement - La Boutique Antillaise{% endblock %}
+
+{% block content %}
+    <h2>CErreur de paiement</h2>
+    <p>
+        Bonjour <strong>{{ order.user.firstname }} {{ order.user.lastname }}</strong>.<br/><br/>
+        Il semble que le paiement pour votre commande n° <strong>{{ order.reference }}</strong> ait échoué.<br/>
+        Une confirmation d'erreur vient de vous être envoyée par email à l'adresse <strong>{{ order.user.email }}</strong>.
+    <hr>
+    <a href="{{ (path('order')) }}" class="btn btn-info">Relancer le paiement</a>
+    </p>
+{% endblock %}
