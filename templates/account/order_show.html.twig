@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande - La Boutique Antillaise{% endblock %}
+
+{% block content %}
+    <h1>Ma commande n° {{ order.reference }}</h1>
+    <hr>
+    <strong>Commande passé le : </strong> {{ order.createdAt|date('d-m-Y') }} <br>
+    <strong>Reference commande : </strong> {{ order.reference }} <br>
+    <strong>Transporteur : </strong> {{ order.carrierName }} <br>
+    <hr>
+    <strong>Détails : </strong>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped mt-4">
+
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Produit</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix unitaire</th>
+                <th scope="col">Total</th>
+            </tr>
+            </thead>
+
+            <tbody class="table-striped">
+            {% for key, orderDetails in order.orderDetails %}
+                <tr>
+                    <th scope="row">{{ key + 1 }}</th>
+                    <td>{{ orderDetails.product }}</td>
+                    <td>x {{ orderDetails.quantity }}</td>
+                    <td>{{ (orderDetails.price / 100)|number_format(2, ',', ' ') }} €</td>
+                    <td>{{ (orderDetails.total / 100)|number_format(2, ',', ' ') }} €</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="text-right mt-3">
+        <strong>Sous-total :</strong> {{ (order.getTotal / 100)|number_format(2, ',', ' ') }} €<br>
+        <strong>Livraison :</strong> {{ (order.carrierPrice / 100)|number_format(2, ',', ' ') }} €<br>
+        <strong>Total :</strong> {{ ((order.getTotal + order.carrierPrice) / 100)|number_format(2, ',', ' ') }} €
+    </div>
+    <hr>
+    <a href="{{ path('account_order') }}">Retour</a><br>
+
+{% endblock %}
