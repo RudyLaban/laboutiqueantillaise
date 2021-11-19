@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\Mail;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,6 +45,14 @@ class OrderValidateController extends AbstractController
             $order->setPaid(true);
             $this->em->flush();
             // envoi d'email au client
+            $mail = new Mail();
+            $content = "Bonjour ".$order->getUser()->getFirstname()."</br>Merci pour votre commande LBA n°".$order->getReference().".</br></br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam autem delectus deserunt ducimus enim est.</br></br>Id inventore laudantium molestias mollitia nihil nisi odit praesentium, quam quia quibusdam sunt suscipit veritatis.";
+            $mail->send(
+                $order->getUser()->getEmail(),
+                $order->getUser()->getFullName(),
+                'Votre commande LBA n°'.$order->getReference().' à bien été validée',
+                $content);
+
         }
 
         // afficher les infos de la commande

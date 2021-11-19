@@ -4,6 +4,9 @@
 {% block content %}
     <div class="block-custom block-small">
     <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
+        {% if notification is not empty %}
+            <div class="alert alert-danger">{{ notification }}</div>
+        {% endif %}
         {{ form(registerForm) }}
         <hr>
         <p class="text-center">Ou <a href="{{ path('app_login') }}">se connecter</a>.</p>
