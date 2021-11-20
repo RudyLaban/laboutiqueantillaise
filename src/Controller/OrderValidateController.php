@@ -37,12 +37,12 @@ class OrderValidateController extends AbstractController
         }
 
         // modif le champ paid de commande
-        if (!$order->isPaid())
+        if (!$order->getState() == 0)
         {
             // vider la session 'cart'
             $cart->remove();
             // persist la commande
-            $order->setPaid(true);
+            $order->setState(1);
             $this->em->flush();
             // envoi d'email au client
             $mail = new Mail();

@@ -52,11 +52,6 @@ class Order
     private $orderDetails;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $paid;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $reference;
@@ -65,6 +60,16 @@ class Order
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $stripeSessionId;
+
+    /**
+     * 0 : non validée
+     * 1 : payée
+     * 2 : préparation en cours
+     * 3 : livraison en cours
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $state;
 
     public function __construct()
     {
@@ -166,18 +171,6 @@ class Order
         return $this;
     }
 
-    public function isPaid(): ?bool
-    {
-        return $this->paid;
-    }
-
-    public function setPaid(bool $paid): self
-    {
-        $this->paid = $paid;
-
-        return $this;
-    }
-
     public function getTotal()
     {
         $total = 0;
@@ -208,6 +201,18 @@ class Order
     public function setStripeSessionId(?string $stripeSessionId): self
     {
         $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
