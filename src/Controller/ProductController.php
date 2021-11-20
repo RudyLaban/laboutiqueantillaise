@@ -59,8 +59,11 @@ class ProductController extends AbstractController
         if (!$product) {
             return $this->redirectToRoute('products');
         }
+        $bestProducts = $this->em->getRepository(Product::class)->findByBest(1);
+
         return $this->render('product/show.html.twig', [
-            'product' => $product,
+            'product'       => $product,
+            'best_products' => $bestProducts,
         ]);
     }
 }

@@ -53,6 +53,11 @@ class Product
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $best;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +143,18 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getBest(): ?bool
+    {
+        return $this->best;
+    }
+
+    public function setBest(bool $best): self
+    {
+        $this->best = $best;
 
         return $this;
     }
