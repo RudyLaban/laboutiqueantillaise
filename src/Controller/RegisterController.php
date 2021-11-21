@@ -38,6 +38,7 @@ class RegisterController extends AbstractController
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $notification = '';
+        $notifStatus = '';
 
         if ($this->getUser()) {
             return $this->redirectToRoute('account');
